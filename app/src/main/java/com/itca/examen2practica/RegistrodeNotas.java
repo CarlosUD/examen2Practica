@@ -18,18 +18,44 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class RegistrodeNotas extends ArrayAdapter<Notas> {
-    private Activity activity;
-    private ArrayList<Notas> lVenta;
-    private static LayoutInflater inflater = null;
-
-    public RegistrodeNotas(@NonNull Context context, int resource) {
-        super(context, resource);
-    }
-
+     public ListView list;
+    public TextView text;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrode_notas);
+              list = findViewById(R.id.notesList);
+        text = findViewById(R.id.texView);
+    
+        ArrayList<String> valor = new ArrayList<>();
+
+
+        ConexionSQLite conexion = new ConexionSQLite(this);
+        SQLiteDatabase bd = conexion.getWritableDatabase();
+
+        Cursor fila = bd.rawQuery("select titulo from tb_bloc", null);
+        if (fila.moveToFirst()) {
+            do {
+                valor.add(fila.getString(0));
+            } while (fila.moveToNext());
+        }
+        bd.close();
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_activated_1, valor);
+        list.setAdapter(adapter);
+
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                Intent intent = new Intent(view.getContext(), update.class);
+                //String t = valor.get(position);
+                String t = (String) list.getItemAtPosition(position);
+
+                intent.putExtra("valorTitle", t);
+                startActivity(intent);
+            }
+        });
 
     }
 
