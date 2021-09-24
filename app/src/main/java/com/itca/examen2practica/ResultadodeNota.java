@@ -30,7 +30,7 @@ public String x;
             ConexionSQLite conexion = new ConexionSQLite(this);
             SQLiteDatabase bd = conexion.getWritableDatabase();
 
-            Cursor fila = bd.rawQuery("select descripcion, autor from tb_bloc where titulo = '" + x + "'"  , null);
+            Cursor fila = bd.rawQuery("select Descripcion, Autor from tb_notas where Titulo = '" + x + "'"  , null);
             if(fila.moveToFirst()) {
                 desc.setText(fila.getString(0));
                 autor.setText(fila.getString(1));
@@ -58,12 +58,12 @@ public String x;
         registro.put("descripcion", d);
         registro.put("autor", a);
 
-        int cant = bd.update("tb_bloc", registro, "titulo = '" + x + "'", null);
+        int cant = bd.update("tb_notas", registro, "titulo = '" + x + "'", null);
         bd.close();
         if (cant == 1) {
-            Toast.makeText(this, "Note Upgrade", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Nota Actualizada Correctamente", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, "Note not Upgrade", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Nota no se Actualizó Correctamente", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -72,13 +72,13 @@ public String x;
         ConexionSQLite conexion = new ConexionSQLite(this);
         SQLiteDatabase bd = conexion.getWritableDatabase();
         String t = titulo.getText().toString();
-        int cant = bd.delete("tb_bloc", "titulo = '" + x + "'", null);
+        int cant = bd.delete("tb_notas", "titulo = '" + x + "'", null);
         bd.close();
         titulo.setText("");
         desc.setText("");
         autor.setText("");
 
-        Toast.makeText(this, "Note Delete", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Notas Elinadas Correctamente", Toast.LENGTH_SHORT).show();
     }
 
 }
