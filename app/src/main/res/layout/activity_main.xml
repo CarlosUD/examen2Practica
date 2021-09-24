@@ -7,63 +7,98 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="45dp"
-        android:text="Titulo:" />
+        android:layout_margin="20dp"
+        android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/et1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="45dp"
-        android:layout_marginRight="45dp"
-        android:layout_marginTop="-30dp"
-        />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Title:"
+            android:textSize="15dp">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+        </TextView>
 
-       <TextView
-           android:layout_width="wrap_content"
-           android:layout_height="match_parent"
-           android:layout_marginTop="20dp"
-           android:text="Descripcion:"/>
+        <EditText
+            android:id="@+id/txtTitle"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content">
 
+        </EditText>
 
+    </LinearLayout>
 
-
-    <MultiAutoCompleteTextView
-        android:id="@+id/et2"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginLeft="85dp"
-        android:layout_marginTop="-30dp"
-        android:layout_marginRight="45dp"/>
-
-</LinearLayout>
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="45dp"
-        android:text="Autor:" />
+        android:layout_margin="20dp"
+        android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/et3"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Description:"
+            android:textSize="15dp">
+
+        </TextView>
+
+        <EditText
+            android:id="@+id/txtDescription"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content">
+
+        </EditText>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Autor:"
+            android:textSize="15dp">
+
+        </TextView>
+
+        <EditText
+            android:id="@+id/txtAutor"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content">
+
+        </EditText>
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="45dp"
-        android:layout_marginRight="45dp"
-        android:layout_marginTop="-30dp"
-        />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAllCaps="false"
-        android:onClick="GuardarNota"
-        android:text="Guardar Notas"
-        android:layout_margin="50dp"/>
+        android:layout_margin="20dp"
+        android:orientation="vertical">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:onClick="saveNote"
+            android:text="Save Note">
+
+        </Button>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:onClick="change"
+            android:text="View Note">
+
+        </Button>
+
+    </LinearLayout>
 </LinearLayout>
