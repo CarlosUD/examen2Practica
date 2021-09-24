@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity  {
             registro.put("descripcion", d);
             registro.put("autor", a);
 
-            int result = (int) bd.insert("tb_bloc", null, registro);
+            int result = (int) bd.insert("tb_notas", null, registro);
             bd.close();
 
             if (result > 0) {
