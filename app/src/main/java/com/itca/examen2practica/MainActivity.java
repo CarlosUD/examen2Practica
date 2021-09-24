@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity  {
     private EditText et1,et2,et3;
-    conexionBD admin = new conexionBD((Context) this,"EvalNotas.db",null,1);
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,21 +23,43 @@ public class MainActivity extends AppCompatActivity  {
         et3=findViewById(R.id.et3);
     }
     public void GuardarNota(View view){
+    try {
+            ConexionSQLite conexion = new ConexionSQLite(this);
+            SQLiteDatabase bd = conexion.getWritableDatabase();
+            String t = titulo.getText().toString();
+            String d = desc.getText().toString();
+            String a = autor.getText().toString();
 
-        SQLiteDatabase db = admin.getWritableDatabase();
-        String titulo = et1.getText().toString();
-       String Descricion = et2.getText().toString();
-       String Autor =et3.getText().toString();
-        ContentValues Registros =new ContentValues();
-        Registros.put("Titulo",titulo);
-        Registros.put("Descripcion",Descricion);
-        Registros.put("Autor",Autor);
-        db.insert("tb_notas",null,Registros);
-        et1.setText("");
-        et2.setText("");
-        et3.setText("");
-            Toast.makeText(this, "Notas Registradas Correctamente", Toast.LENGTH_SHORT).show();
-        db.close();
+            ContentValues registro = new ContentValues();
+            registro.put("id", (Integer) null);
+            registro.put("titulo", t);
+            registro.put("descripcion", d);
+            registro.put("autor", a);
+
+            int result = (int) bd.insert("tb_bloc", null, registro);
+            bd.close();
+
+            if (result > 0) {
+                Toast.makeText(this, "Se guardo el registro", Toast.LENGTH_SHORT).show();
+                titulo.setText("");
+                desc.setText("");
+                autor.setText("");
+            } else {
+                Toast.makeText(this, "No Se guardo el registro", Toast.LENGTH_SHORT).show();
+            }
+
+
+
+        } catch (Exception e) {
+            String msg = e.toString();
+            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        }
+
+
     }
 
+    public void change(View view) {
+        Intent intent = new Intent(this, registerNotes.class);
+        startActivity(intent);
+    }
 }
