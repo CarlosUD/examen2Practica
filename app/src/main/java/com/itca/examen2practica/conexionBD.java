@@ -16,7 +16,7 @@ public class conexionBD extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-          sqLiteDatabase.execSQL("create table tb_bloc(id integer not null primary key autoincrement, Titulo text, Descripcion text, Autor text)");
+          sqLiteDatabase.execSQL("create table tb_notas(id integer not null primary key autoincrement, Titulo text, Descripcion text, Autor text)");
     }
 
     @Override
