@@ -9,11 +9,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Button;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity  {
     private EditText et1,et2,et3;
-    
+    private Button btnenable;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity  {
         et3=findViewById(R.id.et3);
     }
     public void GuardarNota(View view){
+        btnenable.setEnable=true;
     try {
             ConexionSQLite conexion = new ConexionSQLite(this);
             SQLiteDatabase bd = conexion.getWritableDatabase();
