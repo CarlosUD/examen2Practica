@@ -33,7 +33,7 @@ public class RegistrodeNotas extends ArrayAdapter<Notas> {
         ConexionSQLite conexion = new ConexionSQLite(this);
         SQLiteDatabase bd = conexion.getWritableDatabase();
 
-        Cursor fila = bd.rawQuery("select titulo from tb_bloc", null);
+        Cursor fila = bd.rawQuery("select titulo from tb_notas", null);
         if (fila.moveToFirst()) {
             do {
                 valor.add(fila.getString(0));
